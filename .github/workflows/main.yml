@@ -22,8 +22,8 @@ jobs:
   
       - name: Build and push Docker image  
         run: |  
-          docker build -t IWantToPractice.azurecr.io/ClassificationPrac:latest .  
-          docker push IWantToPractice.azurecr.io/ClassificationPrac:latest  
+          docker build -t IWantToPractice.azurecr.io/classificationPrac:latest .  
+          docker push IWantToPractice.azurecr.io/classificationPrac:latest  
   
       - name: Logout from Azure Container Registry  
         run: docker logout IWantToPractice.azurecr.io  
