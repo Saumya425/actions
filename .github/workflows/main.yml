@@ -1,0 +1,29 @@
+name: CI/CD Pipeline  
+  
+on:  
+  push:  
+    branches:  
+      - main  
+  
+jobs:  
+  build-and-push:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+      - name: Checkout repository  
+        uses: actions/checkout@v2  
+  
+      - name: Login to Azure Container Registry  
+        uses: azure/docker-login@v1  
+        with:  
+          login-server: IWantToPractice.azurecr.io  
+          username: ${{ secrets.ACR_USERNAME }}  
+          password: ${{ secrets.ACR_PASSWORD }}  
+  
+      - name: Build and push Docker image  
+        run: |  
+          docker build -t IWantToPractice.azurecr.io/classificationprac:latest .  
+          docker push IWantToPractice.azurecr.io/classificationprac:latest  
+  
+      - name: Logout from Azure Container Registry  
+        run: docker logout IWantToPractice.azurecr.io  
