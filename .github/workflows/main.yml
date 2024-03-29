@@ -25,7 +25,8 @@ jobs:
   
       - name: Build and push Docker image  
         run: |  
-          docker build -t IWantToPractice.azurecr.io/classificationprac:latest .  
+          az acr build --registry IWantToPractice --image classificationprac:latest .  
+          az acr login --name IWantToPractice  
           docker push IWantToPractice.azurecr.io/classificationprac:latest  
         working-directory: ${{ github.workspace }}  
   
@@ -33,7 +34,7 @@ jobs:
         uses: azure/aci-deploy@v1  
         with:  
           resource-group: Practice  
-          dns-name-label: DockerContainerPrac 
+          dns-name-label: DockerContainerPrac  
           image: IWantToPractice.azurecr.io/classificationprac:latest  
           registry-login-server: IWantToPractice.azurecr.io  
           registry-username: ${{ secrets.ACR_USERNAME }}  
