@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: iwanttopractice.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e9475efd3e194582af110846acf19b40 }}/classificationprac:${{ github.sha }}
+        tags: iwanttopractice.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e9475efd3e194582af110846acf19b40 }}/classificationprac:latest
         file: ./Dockerfile
 
   deploy:
