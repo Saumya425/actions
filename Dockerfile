@@ -7,11 +7,8 @@ WORKDIR /app
 # Copy the requirements file to the container  
 COPY requirements.txt .  
   
-# Disable SSL certificate verification (optional)  
-ENV PYTHONHTTPSVERIFY=0  
-  
-# Install the Python dependencies  
-RUN pip install --no-cache-dir -r requirements.txt  
+# Disable SSL certificate verification temporarily and install the Python dependencies  
+RUN pip install --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt  
   
 # Copy the application code to the container  
 COPY . .  
