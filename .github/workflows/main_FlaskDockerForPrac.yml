@@ -28,7 +28,7 @@ jobs:
       uses: docker/build-push-action@v3  
       with:  
         push: true  
-        tags: iwanttopractice.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b664662d3a7b43de9e00f1b0010d79b6 }}/fim:${{ steps.get-sha.outputs.sha }}  
+        tags: iwanttopractice.azurecr.io/iwanttopractice/fim:${{ steps.get-sha.outputs.sha }}  
         file: ./Dockerfile  
   
     - id: get-sha  
@@ -49,4 +49,4 @@ jobs:
         app-name: 'FlaskDockerForPrac'  
         slot-name: 'production'  
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f87f7f7dfd04e64b138fdff2f575d9f }}  
-        images: 'iwanttopractice.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b664662d3a7b43de9e00f1b0010d79b6 }}/fim:${{ steps.get-sha.outputs.sha }}'  
+        images: 'iwanttopractice.azurecr.io/iwanttopractice/fim:${{ steps.get-sha.outputs.sha }}'  
