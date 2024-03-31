@@ -1,11 +1,14 @@
-# Use the official Python base image with version 3.9.13  
-FROM python:3.9.13  
+# Use the official Python base image  
+FROM python:3.9  
   
-# Set the working directory in the container  
+# Set the working directory inside the container  
 WORKDIR /app  
   
-# Copy the requirements.txt file to the container  
+# Copy the requirements file to the container  
 COPY requirements.txt .  
+  
+# Disable SSL certificate verification (optional)  
+ENV PYTHONHTTPSVERIFY=0  
   
 # Install the Python dependencies  
 RUN pip install --no-cache-dir -r requirements.txt  
@@ -13,8 +16,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the application code to the container  
 COPY . .  
   
-# Expose the port on which your Flask application will run (replace 5000 with your desired port number)  
-EXPOSE 5000  
-  
-# Set the entrypoint command to run your Flask application  
-CMD ["python", "app.py"]  
+# Set the default command to run when the container starts  
+CMD [ "python", "app.py" ]  
